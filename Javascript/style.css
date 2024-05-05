@@ -1,0 +1,49 @@
+/* Menyembunyikan tombol panah naik dan turun pada input number */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.overlay {
+  display: none; /* Secara default overlay disembunyikan */
+  position: fixed; /* Menempatkan overlay di atas konten */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(
+    0,
+    0,
+    0,
+    0.5
+  ); /* Menambahkan latar belakang semi-transparan */
+  z-index: 999; /* Menempatkan overlay di atas konten lain */
+}
+
+.overlay-content {
+  position: absolute; /* Menempatkan konten overlay relatif terhadap overlay */
+  top: 50%; /* Menempatkan konten di tengah vertikal */
+  left: 50%; /* Menempatkan konten di tengah horizontal */
+  transform: translate(-50%, -50%); /* Pusatkan konten */
+  background-color: white; /* Warna latar belakang konten overlay */
+  padding: 20px;
+  width: 80%;
+  height: 80%;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Menambahkan bayangan */
+}
+
+.overlay button {
+  margin: 10px;
+  position: absolute;
+  left: auto;
+  right: 0;
+  border: none;
+  background: none;
+  content: "\00d7";
+}
+
+.crud-section {
+  display: none;
+}

@@ -7,27 +7,66 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="menu-section">
-      <button onclick="showOverlay('input-section')">Input Section</button>
-      <button onclick="showOverlay('search-section')">Search Section</button>
-      <button onclick="showOverlay('delete-section')">Delete Section</button>
-      <button onclick="showOverlay('edit-section')">Edit Section</button>
-      <button onclick="showOverlay('show-section')">Show Section</button>
-    </div>
-    <div id="overlay" class="overlay">
-      <div id="overlay-button"></div>
-      <div class="overlay-content" id="overlay-content"></div>
-    </div>
-    <div class="crud-section">
-      <div id="input-section" class="section">
-        <input type="text" />
-        <input type="number" inputmode="numeric" />
+    <div id="snackbar"></div>
+    <div id="confirmationOverlay" class="confirmation-overlay">
+      <div id="confirmationBox" class="confirmation-box">
+        <div class="confirmation-box-content">
+          <p>Apakah Anda yakin ingin menghapus data mahasiswa ini?</p>
+          <button id="confirmDeleteBtn">Ya</button>
+          <button id="cancelDeleteBtn">Tidak</button>
+        </div>
       </div>
-      <div id="search-section" class="section"></div>
-      <div id="delete-section" class="section"></div>
-      <div id="edit-section" class="section"></div>
-      <div id="show-section" class="section"></div>
     </div>
+
+    <h1>CRUD Data Mahasiswa</h1>
+
+    <!-- Form untuk input data mahasiswa -->
+    <h2>Tambah Mahasiswa</h2>
+    <form id="formMahasiswa">
+      <label for="nama">Nama:</label>
+      <input type="text" id="nama" required /><br />
+
+      <label for="tempatLahir">Tempat Lahir:</label>
+      <input type="text" id="tempatLahir" required /><br />
+
+      <label for="tanggalLahir">Tanggal Lahir:</label>
+      <input type="date" id="tanggalLahir" required /><br />
+
+      <label for="jenisKelamin">Jenis Kelamin:</label>
+      <select id="jenisKelamin" required>
+        <option value="Laki-laki">Laki-laki</option>
+        <option value="Perempuan">Perempuan</option></select
+      ><br />
+
+      <label for="alamat">Alamat:</label>
+      <textarea id="alamat" required></textarea><br />
+
+      <label for="jurusan">Jurusan:</label>
+      <input type="text" id="jurusan" required /><br />
+
+      <button type="submit" id="submit">Tambah</button>
+      <button type="submit" id="edit" class="hide">Simpan</button>
+    </form>
+
+    <!-- Tabel untuk menampilkan data mahasiswa -->
+    <h2>Data Mahasiswa</h2>
+    <table id="tabelMahasiswa">
+      <thead>
+        <tr>
+          <th>NIM</th>
+          <th>Nama</th>
+          <th>Tempat Lahir</th>
+          <th>Tanggal Lahir</th>
+          <th>Jenis Kelamin</th>
+          <th>Alamat</th>
+          <th>Jurusan</th>
+          <th>Aksi</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Data mahasiswa akan ditampilkan di sini -->
+      </tbody>
+    </table>
     <script src="script.js"></script>
   </body>
 </html>

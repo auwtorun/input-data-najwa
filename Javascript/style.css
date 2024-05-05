@@ -1,13 +1,83 @@
-/* Menyembunyikan tombol panah naik dan turun pada input number */
-input[type="number"]::-webkit-inner-spin-button,
-input[type="number"]::-webkit-outer-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  width: 100vw;
+  height: 100vh;
 }
 
-.overlay {
-  display: none; /* Secara default overlay disembunyikan */
-  position: fixed; /* Menempatkan overlay di atas konten */
+h1,
+h2 {
+  color: #333;
+}
+
+form {
+  margin-bottom: 20px;
+}
+
+label {
+  display: inline-block;
+  width: 120px;
+  margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="date"],
+select,
+textarea {
+  width: 200px;
+  padding: 5px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+#tableMahasiswa {
+  overflow-x: scroll;
+  max-width: 100%;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  white-space: nowrap;
+}
+
+th,
+td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #007bff;
+  color: #fff;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.hide {
+  display: none;
+}
+
+.confirmation-overlay {
+  display: none;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -17,33 +87,97 @@ input[type="number"]::-webkit-outer-spin-button {
     0,
     0,
     0.5
-  ); /* Menambahkan latar belakang semi-transparan */
-  z-index: 999; /* Menempatkan overlay di atas konten lain */
+  ); /* Background gelap dengan transparansi */
+  z-index: 999; /* Pastikan overlay muncul di atas pop-up window */
 }
 
-.overlay-content {
-  position: absolute; /* Menempatkan konten overlay relatif terhadap overlay */
-  top: 50%; /* Menempatkan konten di tengah vertikal */
-  left: 50%; /* Menempatkan konten di tengah horizontal */
-  transform: translate(-50%, -50%); /* Pusatkan konten */
-  background-color: white; /* Warna latar belakang konten overlay */
-  padding: 20px;
-  width: 80%;
-  height: 80%;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Menambahkan bayangan */
-}
-
-.overlay button {
-  margin: 10px;
-  position: absolute;
-  left: auto;
-  right: 0;
-  border: none;
-  background: none;
-  content: "\00d7";
-}
-
-.crud-section {
+.confirmation-box {
   display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  transition: opacity 0.1s ease-in-out;
+}
+
+.confirmation-box-content {
+  text-align: center;
+}
+
+.confirmation-box button {
+  margin: 5px;
+}
+
+/* The snackbar - position it at the bottom and in the middle of the screen */
+#snackbar {
+  visibility: hidden; /* Hidden by default. Visible on click */
+  min-width: 250px; /* Set a default minimum width */
+  margin-inline: 24px;
+  color: #fff; /* White text color */
+  text-align: center; /* Centered text */
+  border-radius: 2px; /* Rounded borders */
+  padding: 16px; /* Padding */
+  position: fixed; /* Sit on top of the screen */
+  z-index: 1; /* Add a z-index if needed */
+  right: 0;
+  bottom: 30px; /* 30px from the bottom */
+}
+
+/* Show the snackbar when clicking on a button (class added with JavaScript) */
+#snackbar.show {
+  visibility: visible; /* Show the snackbar */
+  /* Add animation: Take 0.5 seconds to fade in and out the snackbar.
+  However, delay the fade out process for 2.5 seconds */
+  -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+/* Animations to fade the snackbar in and out */
+@-webkit-keyframes fadein {
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
+}
+
+@keyframes fadein {
+  from {
+    bottom: 0;
+    opacity: 0;
+  }
+  to {
+    bottom: 30px;
+    opacity: 1;
+  }
+}
+
+@-webkit-keyframes fadeout {
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
+}
+
+@keyframes fadeout {
+  from {
+    bottom: 30px;
+    opacity: 1;
+  }
+  to {
+    bottom: 0;
+    opacity: 0;
+  }
 }
